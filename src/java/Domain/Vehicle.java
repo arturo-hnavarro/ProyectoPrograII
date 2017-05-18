@@ -17,7 +17,7 @@ public class Vehicle {
     private String color;
     private String brand;
     private String model;
-    private ArrayList<Customer> customers;
+    private ArrayList<Customer> customers = new ArrayList<>();
     private VehicleType vehicleType;
 
     public Vehicle() {

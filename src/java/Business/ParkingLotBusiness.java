@@ -28,9 +28,9 @@ public class ParkingLotBusiness {
         parkingLotData = new ParkingLotData();
     }
 
-    public void registerParkingLot(ParkingLot parkingLot) throws IOException{
+    public void registerParkingLot(ParkingLot parkingLot) throws IOException, ParseException{
         
-        parkingLotData.registerParkingLotInFile(parkingLot);
+        parkingLotData.registerParkingLot(parkingLot);
     }
     public void modifyParkingLot(ParkingLot parkingLot) throws IOException, ParseException{
         
@@ -48,7 +48,7 @@ public class ParkingLotBusiness {
     }
     
     public LinkedList<ParkingLot> getAllParkingLots() throws ParseException{
-        parkingLotData.getAllParkingLotsFromFile();
+        
         return parkingLotData.getAllParkingLots();
     }
     
