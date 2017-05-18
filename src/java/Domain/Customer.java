@@ -14,11 +14,11 @@ public class Customer extends User implements Employee{
     private boolean disabilityPresented;
 
     public Customer() {
-        super();
-    }
-
+    super();
+    } 
+    
     public Customer(String identification, String name, String username, String password, boolean disabilityPresented) {
-        super(identification, name, username, password);
+        super(identification, name, username, password,"customer");
         this.disabilityPresented = disabilityPresented;
     }
 

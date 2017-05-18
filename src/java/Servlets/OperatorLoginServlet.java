@@ -9,12 +9,15 @@ import Data.OperatorData;
 import Domain.Operator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -64,20 +67,24 @@ public class OperatorLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean enters = false;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        OperatorData operatorData = new OperatorData();
-        for (Operator currentOperator : operatorData.getAllOperators()) {
-            if(currentOperator.getUsername().equals(username)&&currentOperator.getPassword().equals(password))
-                enters = true;
+        try {
+            boolean enters = false;
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            OperatorData operatorData = new OperatorData();
+            for (Operator currentOperator : operatorData.getAllOperators()) {
+                if(currentOperator.getUsername().equals(username)&&currentOperator.getPassword().equals(password))
+                    enters = true;
+            }
+            if(enters){
+                RequestDispatcher dispacher = request.getRequestDispatcher("show_info_customer.jsp");
+                dispacher.forward(request, response);
+            }else
+                processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(OperatorLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(enters){
-        RequestDispatcher dispacher = request.getRequestDispatcher("show_info_customer.jsp");
-        dispacher.forward(request, response);
-        }else
-        processRequest(request, response);
     }
 
     /**

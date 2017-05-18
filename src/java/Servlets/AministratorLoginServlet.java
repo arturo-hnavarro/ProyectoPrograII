@@ -6,17 +6,18 @@
 package Servlets;
 
 import Data.AdministratorData;
-import Data.OperatorData;
 import Domain.Administrator;
-import Domain.Operator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -66,20 +67,25 @@ public class AministratorLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean enters = false;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        AdministratorData administratorData = new AdministratorData();
-        for (Administrator currentAdministrator : administratorData.getAllAdministrators()) {
-            if(currentAdministrator.getUsername().equals(username)&&currentAdministrator.getPassword().equals(password))
-                enters = true;
+        try {
+            boolean enters = false;
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String role = request.getParameter("role");
+            
+            AdministratorData administratorData = new AdministratorData();
+            for (Administrator currentAdministrator : administratorData.getAllAdministrators()) {
+                if(currentAdministrator.getUsername().equals(username)&&currentAdministrator.getPassword().equals(password)&&currentAdministrator.getRole().equalsIgnoreCase(role))
+                    enters = true;
+            }
+            if(enters){
+                RequestDispatcher dispacher = request.getRequestDispatcher("customer_menu.jsp");
+                dispacher.forward(request, response);
+            }else
+                processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(AministratorLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(enters){
-        RequestDispatcher dispacher = request.getRequestDispatcher("show_info_administrator.jsp");
-        dispacher.forward(request, response);
-        }else
-        processRequest(request, response);
     }
 
     /**

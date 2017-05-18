@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 /**
@@ -14,13 +9,14 @@ public class Operator extends User implements Employee{
     private String phone;
     private String email;
 
-    public Operator(String phone, String email) {
-        this.phone = phone;
-        this.email = email;
+    public Operator() {
+        super();
     }
 
+    
+    
     public Operator(String phone, String email, String identification, String name, String username, String password) {
-        super(identification, name, username, password);
+        super(identification, name, username, password,"operator");
         this.phone = phone;
         this.email = email;
     }
