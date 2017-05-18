@@ -178,15 +178,42 @@ public class ParkingLotData {
         }//while
         
         //Update the file
-        //false: not allowed multiple insertions in the file
         FileWriter file = new FileWriter(jsonFilePath, false);
         for (ParkingLot parkingLot : parkingLots) {
             registerParkingLotInFile(parkingLot);
         }
+
+    }
+    
+     public void deleteParkingLot(ParkingLot parkingLotToDelete) throws ParseException, IOException, FileException {
+        //En capa de business controlar que no cambie el id del parqueo y que, no existan vehiculos estacionados
+        LinkedList<ParkingLot> parkingLots = getAllParkingLotsFromFile();
+         if (parkingLots.size() == 0) {
+             throw new FileException("No hay parqueos registrados");
+         }
+
+        boolean found = false;
+        int startPosition = 0;
+        int finalPosition = parkingLots.size() - 1;
+
+        while (startPosition <= finalPosition && !found) { //Searching the parkingLot to modify
+            int middle = (startPosition + finalPosition) / 2;
+            if (parkingLots.get(middle).getId() == parkingLotToDelete.getId()) {
+                parkingLots.remove(middle);
+                found = true;
+            } else if (parkingLots.get(middle).getId() < parkingLotToDelete.getId()) {
+                startPosition = middle + 1;
+            } else if (parkingLots.get(middle).getId() > parkingLotToDelete.getId()) {
+                finalPosition = middle - 1;
+            }
+        }//while
         
-        
-        
-        
+        //Update the file
+        FileWriter file = new FileWriter(jsonFilePath, false);
+        for (ParkingLot parkingLot : parkingLots) {
+            registerParkingLotInFile(parkingLot);
+            file.close();
+        }
 
     }
 

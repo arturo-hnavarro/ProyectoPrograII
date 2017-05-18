@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Data.FileException;
 import Data.ParkingLotData;
 import Domain.ParkingLot;
 import Domain.Space;
@@ -69,21 +70,36 @@ public class ParkingLotDataTest {
 //        
 //        ParkingLot p2 = new ParkingLot("Parqueo del este", 2, vehicles2, spaces2);
 //        parkingLotData.registerParkingLotInFile(p2);
-//        
+//    }
+//    
+//    @Test
+//    public void modifyParkingLot() throws ParseException, IOException {
+//        ArrayList<Vehicle> vehicles = new ArrayList<>();
+//        Space[] spaces = new Space[3];
+//        spaces[0] = new Space(1, true, false, new VehicleType(1, "LIVIANO", (byte) 4, 700));
+//        spaces[1] = new Space(2, false, false, new VehicleType(3, "Camión", (byte) 4, 5000));
+//        spaces[2] = new Space(2, false, false, new VehicleType(2, "MOTO", (byte) 4, 400));
+//        ParkingLot p = new ParkingLot(2, "QQQQQQQQQQQQQ", 3, vehicles, spaces);
+//
+//        parkingLotData.modifyParkingLot(p);
 //    }
     
     @Test
-    public void modifyParkingLot() throws ParseException, IOException {
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
-        Space[] spaces = new Space[3];
-        spaces[0] = new Space(1, true, false, new VehicleType(1, "LIVIANO", (byte) 4, 700));
-        spaces[1] = new Space(2, false, false, new VehicleType(3, "Camión", (byte) 4, 5000));
-        spaces[2] = new Space(2, false, false, new VehicleType(2, "MOTO", (byte) 4, 400));
-        ParkingLot p = new ParkingLot(2, "NOMBRE CAMBIADO", 3, vehicles, spaces);
+    public void deleteParkingLot() throws ParseException, IOException, FileException{
+        //ParkingLot 2
+        ArrayList<Vehicle> vehicles2 = new ArrayList<>();
+        Space[] spaces2 = new Space[2];
 
-        parkingLotData.modifyParkingLot(p);
+        spaces2[0] = new Space(1, true, false, new VehicleType(1, "liviano", (byte)2, 800));
+        spaces2[1] = new Space(2, true, false, new VehicleType(5, "Caballo", (byte)4, 2000));
+        
+        ParkingLot p2 = new ParkingLot(2, "Parqueo del este", 2, vehicles2, spaces2);
+        parkingLotData.deleteParkingLot(p2);
+        
     }
-     @Test
+
+    
+    @Test
      public void getAllParkingLotFromFile() throws ParseException {
          System.out.println("*** Nombre de la PRUEBA ***\ngetAllParkingLotFromFile()");
          LinkedList<ParkingLot> parkingLots = parkingLotData.getAllParkingLotsFromFile();
