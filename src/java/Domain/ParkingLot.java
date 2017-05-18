@@ -16,20 +16,25 @@ public class ParkingLot {
     private int id;
     private String name;
     private transient int numberOfSpaces;
+    private static int numberOfParkingLot = 1;
     private ArrayList<Vehicle> vehicles;
     private Space[] spaces;
 
     public ParkingLot() {
-
-        //instanciamos e inicializamos los arreglos
-        vehicles = new ArrayList<>();
-        //hardcoded # de espacios
-        spaces = new Space[numberOfSpaces];
-
     }
 
     public ParkingLot(int id, String name, int numberOfSpaces, ArrayList<Vehicle> vehicles, Space[] spaces) {
         this.id = id;
+        this.name = name;
+        this.numberOfSpaces = numberOfSpaces;
+        this.vehicles = vehicles;
+        this.spaces = spaces;
+    }
+
+ 
+
+    public ParkingLot(String name, int numberOfSpaces, ArrayList<Vehicle> vehicles, Space[] spaces) {
+        this.id = numberOfParkingLot++;
         this.name = name;
         this.numberOfSpaces = numberOfSpaces;
         this.vehicles = vehicles;

@@ -11,10 +11,12 @@ import Domain.Space;
 import Domain.Vehicle;
 import Domain.VehicleType;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -25,91 +27,26 @@ import org.json.simple.parser.ParseException;
 
 /**
  *
- * @author Esteban
+ * @author Arturo
  */
 public class ParkingLotData {
 
     static LinkedList<ParkingLot> parkingLots;
     static int parkingLotId = 1;
-    FileWriter fileCustomer = null;
     final String jsonFilePath = "files//parkingLots.json";
+ 
+    
 
-    public ParkingLotData() throws IOException {
-
-        parkingLots = new LinkedList<>();
-        fileCustomer = new FileWriter(jsonFilePath, true);
+    public ParkingLotData()  {
+ 
     }
 
-    public ParkingLot registerParkingLot(String nameOfParkingLot, Space spaces[]) {
-
-        ParkingLot parkingLot = new ParkingLot();
-        parkingLot.setId(parkingLotId);
-        parkingLotId++;
-        parkingLot.setName(nameOfParkingLot);
-        parkingLot.setSpaces(spaces);
-
-        parkingLots.add(parkingLot);
-
-        return parkingLot;
-
-    }
+    
 
     public void registerParkingLot(ParkingLot parkingLot) throws IOException {
 
         parkingLots.add(parkingLot);
     }
-
-//    public int registerVehicleInParkingLot(Vehicle vehicle, ParkingLot parkingLot) {
-
-//        ArrayList<Vehicle> vehiclesInParkingLot = parkingLot.getVehicles();
-//        Space spaces[] = parkingLot.getSpaces();
-//        int spaceId = 0;
-//        //recorre la lista de vehículos para ver en qué posición
-//        //podemos ingresar al vehículo actual
-//        for (int i = 0; i < spaces.length; i++) {
-//
-//            if (spaces[i].isSpaceTaken() == false) {
-//
-//                //preguntamos si el cliente presenta una capacidad particular
-//                //y requiere de un espacio adaptado
-//                if (vehicle.getCustomers().isDisabilityPresented()) {
-//
-//                    if (spaces[i].isDisabilityAdaptation()) {
-//
-//                        //compara el tipo de vehículo del espacio y del vehículo que se va a 
-//                        //estacionar (tipos: moto, automóvil, bus, etc)
-//                        if (spaces[i].getVehicleType().getId() == vehicle.getVehiculeType().getId()) {
-//                            vehiclesInParkingLot.add(vehicle);
-//                            spaces[i].setSpaceTaken(true);
-//                            //este es el número del espacio que se va a retornar
-//                            spaceId = spaces[i].getId();
-//                            break;
-//                        }
-//
-//                    }
-//
-//                } else if (!spaces[i].isDisabilityAdaptation()) {
-//                    //compara el tipo de vehículo del espacio y del vehículo que se va a 
-//                    //estacionar (tipos: moto, automóvil, bus, etc)
-//                    if (spaces[i].getVehicleType().getId() == vehicle.getVehiculeType().getId()) {
-//
-//                        vehiclesInParkingLot.add(vehicle);
-//                        spaces[i].setSpaceTaken(true);
-//                        //este es el número del espacio que se va a retornar
-//                        spaceId = spaces[i].getId();
-//                        break;
-//                    }
-//
-//                }
-//
-//            }
-//
-//        }
-//        parkingLot.setSpaces(spaces);
-//        parkingLot.setVehicles(vehiclesInParkingLot);
-//
-//        return spaceId;
-//    }
 
     public void removeVehicleFromParkingLot(Vehicle vehicle, ParkingLot parkingLot) {
 
@@ -138,28 +75,12 @@ public class ParkingLotData {
         return parkingLots;
     }
 
-    public ParkingLot findParkingLotById(int parkingLotId) {
 
-        ParkingLot parkingLot = new ParkingLot();
-
-        for (ParkingLot currentParkingLot : parkingLots) {
-
-            if (currentParkingLot.getId() == parkingLotId) {
-
-                parkingLot = currentParkingLot;
-            }
-        }
-        return parkingLot;
-    }
 
     //CRUD
     public void registerParkingLotInFile(ParkingLot parkingLot) throws IOException {
-
-        parkingLot.setId(parkingLotId);
-        parkingLotId++;
-
         JSONObject parkingLotObject = new JSONObject();
-        parkingLotObject.put("id", parkingLot.getId());
+        parkingLotObject.put("parkingLotId", parkingLot.getId());
         parkingLotObject.put("name", parkingLot.getName());
         parkingLotObject.put("numberOfSpaces", parkingLot.getNumberOfSpaces());
 
@@ -186,11 +107,13 @@ public class ParkingLotData {
             jsonArraySpaces.add(spacesObject);//Add the space to the ParkingLot
             parkingLotObject.put("spaces", jsonArraySpaces);
         }
-
         //true allows multiple insertions in the file
-        try (FileWriter file = new FileWriter(jsonFilePath, true)) {
-            file.write(parkingLotObject.toJSONString() + "\r\n");
-        }
+            try (FileWriter file = new FileWriter(jsonFilePath, true)) {
+                file.write(parkingLotObject.toJSONString() + "\r\n");
+                file.close();
+            }
+            
+
     }
 
     public LinkedList<ParkingLot> getAllParkingLotsFromFile() throws ParseException {
@@ -209,7 +132,7 @@ public class ParkingLotData {
 
                 ParkingLot parkingLot = new ParkingLot();
                 parkingLot.setName(jsonObject.get("name").toString());
-                parkingLot.setId(Integer.parseInt(jsonObject.get("id").toString()));
+                parkingLot.setId(Integer.parseInt(jsonObject.get("parkingLotId").toString()));
                 parkingLot.setNumberOfSpaces(Integer.parseInt(jsonObject.get("numberOfSpaces").toString()));
 
                 JSONArray spacesList = (JSONArray) jsonObject.get("spaces");
@@ -232,7 +155,42 @@ public class ParkingLotData {
         return parkingLots;
     }
 
-    //utility methods
+    public void modifyParkingLot(ParkingLot parkingLotToModify) throws ParseException, IOException {
+        //En capa de business controlar que no cambie el id del parqueo y que, no existan vehiculos estacionados
+        LinkedList<ParkingLot> parkingLots = getAllParkingLotsFromFile();
+
+        boolean found = false;
+        int startPosition = 0;
+        int finalPosition = parkingLots.size() - 1;
+
+        while (startPosition <= finalPosition && !found) { //Searching the parkingLot to modify
+            int middle = (startPosition + finalPosition) / 2;
+            if (parkingLots.get(middle).getId() == parkingLotToModify.getId()) {
+                parkingLots.get(middle).setName(parkingLotToModify.getName());
+                parkingLots.get(middle).setNumberOfSpaces(parkingLotToModify.getNumberOfSpaces());
+                parkingLots.get(middle).setSpaces(parkingLotToModify.getSpaces());
+                found = true;
+            } else if (parkingLots.get(middle).getId() < parkingLotToModify.getId()) {
+                startPosition = middle + 1;
+            } else if (parkingLots.get(middle).getId() > parkingLotToModify.getId()) {
+                finalPosition = middle - 1;
+            }
+        }//while
+        
+        //Update the file
+        //false: not allowed multiple insertions in the file
+        FileWriter file = new FileWriter(jsonFilePath, false);
+        for (ParkingLot parkingLot : parkingLots) {
+            registerParkingLotInFile(parkingLot);
+        }
+        
+        
+        
+        
+
+    }
+
+//utility methods
     private Space[] getSpaces(JSONArray spacesList, Space[] spaces) throws ParseException {
         if (!spacesList.isEmpty()) {
             int index = 0;
@@ -257,7 +215,7 @@ public class ParkingLotData {
 
     private ArrayList<Vehicle> getVehiclesFromParkingLot(JSONArray vehicleList) throws ParseException {
         ArrayList<Vehicle> vehiclesToshow = new ArrayList<>();
-        
+
         if (!vehicleList.isEmpty()) {
             Iterator<String> iterator = vehicleList.iterator();
             while (iterator.hasNext()) {
