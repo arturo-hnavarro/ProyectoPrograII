@@ -106,7 +106,7 @@ public final class administrator_005flogin_jsp extends org.apache.jasper.runtime
       out.write("             </article>\n");
       out.write("                       \n");
       out.write("            <article>\n");
-      out.write("                <form action=\"AdministratorLoginServlet\" method=\"get\">\n");
+      out.write("                <form action=\"AministratorInfoServlet\" method=\"get\">\n");
       out.write("                    <table>\n");
       out.write("                        <tr>\n");
       out.write("                            <td>\n");

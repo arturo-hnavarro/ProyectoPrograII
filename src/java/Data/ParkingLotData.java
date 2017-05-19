@@ -33,7 +33,8 @@ public class ParkingLotData {
 
     private LinkedList<ParkingLot> parkingLots;
     static int parkingLotId = 1;
-    final String jsonFilePath = "files//parkingLots.json";
+    //final String jsonFilePath = "files//parkingLots.json";
+    final String jsonFilePath = "C:\\Users\\Arturo\\Documents\\NetBeansProjects\\Proyecto-Programacion2\\ProyectoPrograII\\files\\parkingLots.json";
 
     public ParkingLotData() {
         parkingLots = new LinkedList<>();
@@ -150,16 +151,16 @@ public class ParkingLotData {
         }
         parkingLot.setSpaces(spaces);
         parkingLot.setVehicles(vehiclesInParkingLot);
-        
+
         //update parkingLots
-        for (int i= 0 ; i<parkingLots.size(); i++) {
-            if (parkingLots.get(i).getId()==parkingLot.getId()) {
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getId() == parkingLot.getId()) {
                 parkingLots.get(i).setId(parkingLot.getId());
                 parkingLots.get(i).setName(parkingLot.getName());
                 parkingLots.get(i).setNumberOfSpaces(parkingLot.getNumberOfSpaces());
                 parkingLots.get(i).setSpaces(parkingLot.getSpaces());
                 parkingLots.get(i).setVehicles(parkingLot.getVehicles());
-                
+
             }
         }
         updateFile();
@@ -192,12 +193,23 @@ public class ParkingLotData {
 
     private ArrayList<Vehicle> getVehiclesFromParkingLot(JSONArray vehicleList) throws ParseException {
         ArrayList<Vehicle> vehiclesToshow = new ArrayList<>();
+        //System.out.println("lista" + vehicleList.toString());
+
+        Iterator<JSONObject> iterator1 = vehicleList.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
 
         if (!vehicleList.isEmpty()) {
-            Iterator<String> iterator = vehicleList.iterator();
+
+            Iterator<JSONObject> iterator = vehicleList.iterator();
             while (iterator.hasNext()) {
-                String currentObjet = iterator.next();
-                JSONObject currentJsonVehicle = (JSONObject) new JSONParser().parse(currentObjet);//Change the string to JSONObject
+                System.out.println(iterator.next());
+            }
+            while (iterator.hasNext()) {
+                //String currentObjet = iterator.next();
+                JSONObject currentJsonVehicle = iterator.next();
+                //JSONObject currentJsonVehicle = (JSONObject) new JSONParser().parse(currentObjet);//Change the string to JSONObject
                 String plate = currentJsonVehicle.get("plate").toString();
                 String color = currentJsonVehicle.get("color").toString();
                 String brand = currentJsonVehicle.get("brand").toString();
@@ -251,7 +263,7 @@ public class ParkingLotData {
             JSONObject spacesObject = new JSONObject();
             spacesObject.put("idSpace", spaces[i].getId());
             spacesObject.put("disabilityAdaptation", spaces[i].isDisabilityAdaptation());
-            spacesObject.put("spaceTaken", false);
+            spacesObject.put("spaceTaken", spaces[i].isSpaceTaken());
 
             //Add the information of VehicleType related to the space
             JSONObject vehicleTypeObject = new JSONObject();

@@ -67,7 +67,7 @@
              </article>
                        
             <article>
-                <form action="AdministratorLoginServlet" method="get">
+                <form action="AministratorInfoServlet" method="get">
                     <table>
                         <tr>
                             <td>

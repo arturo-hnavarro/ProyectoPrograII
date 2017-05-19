@@ -74,8 +74,10 @@ public class AministratorLoginServlet extends HttpServlet {
             String role = request.getParameter("role");
             
             AdministratorData administratorData = new AdministratorData();
+            System.out.println("si entré");
             for (Administrator currentAdministrator : administratorData.getAllAdministrators()) {
                 if(currentAdministrator.getUsername().equals(username)&&currentAdministrator.getPassword().equals(password)&&currentAdministrator.getRole().equalsIgnoreCase(role))
+                   System.out.println("si entré al if");
                     enters = true;
             }
             if(enters){

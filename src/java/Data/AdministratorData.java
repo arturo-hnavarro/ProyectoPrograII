@@ -16,12 +16,14 @@ import org.json.simple.parser.ParseException;
 /**
  * @author Samuel
  */
-public class AdministratorData extends CustomerData{
+public class AdministratorData{
     
     private final String jsonFilePath;
 
-    public AdministratorData() {
+    public AdministratorData() throws IOException, ParseException {
         this.jsonFilePath = "C:\\Users\\Arturo\\Desktop\\ProyectoPrograII-master\\ProyectoPrograII-master\\files\\User.json";
+        insertAdministrator(new Administrator("1111111111", "admin", "admin", "0000"));
+        //loadFile();
     }
 
     public void insertAdministrator(Administrator administrator) throws IOException, org.json.simple.parser.ParseException {
@@ -145,7 +147,6 @@ public class AdministratorData extends CustomerData{
         }
     }
     
-    
     public Administrator getAdministratorByUsername(String username) throws ParseException, org.json.simple.parser.ParseException {
         Administrator administrator = new Administrator();
         JSONObject jsonObject;        
@@ -178,5 +179,19 @@ public class AdministratorData extends CustomerData{
             // ex.printStackTrace();
         }
         return administrator;
+    }
+    
+    private void loadFile() throws IOException, ParseException {
+        File file = new File(jsonFilePath);
+        System.out.println("existe: "+ file.exists());
+        if ( !file.exists() ) {
+            insertAdministrator(new Administrator("1111111111", "admin", "admin", "0000"));
+            System.out.println("Inserte el asdminista");
+        }
+
+        
+        
+        
+        
     }
 }
