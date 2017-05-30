@@ -1,14 +1,16 @@
+<%-- 
+    Document   : insert_parkingLot
+    Created on : 24/05/2017, 02:21:18 PM
+    Author     : Arturo
+--%>
 
-<!doctype html>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-
     <head>
-
-        <title>parqueos oso polar - Ingresar</title>
+        <title>parqueos oso polar - Ingresar parqueo</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
-
         <link href="//fonts.googleapis.com/css?family=Exo+2:300,500,600,regular,italic&subset=latin,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/_shared/css/layout-shared.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/_shared/css/menu-bones.css?v=1.241" type="text/css" />
@@ -16,17 +18,12 @@
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/editable.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/animation.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/theme-stripe.css?v=1.241" type="text/css" />
-
         <link href="https://dss4hwpyv4qfp.cloudfront.net/mozello.ico" rel="shortcut icon">
-
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/backend/css/backend.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/libs/js/fancybox/jquery.fancybox.css?v=1.241" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="https://dss4hwpyv4qfp.cloudfront.net/cache/preview-es.1.241.js"></script>
-
-
-        <style class="customizer">
-            #title { background-color :  #05679b  }
+        <style class="customizer"> #title { background-color :  #05679b  }
             #title:after { border-top-color :  #05679b  }
             #title .mz_wysiwyg { color :  #ffffff  }
             #menu > ul > li > a { color :  #ffffff  }
@@ -49,12 +46,7 @@
         </style>
         <style class="customizer-fonts">
         </style>
-
-
-
-
         <script src="https://dss4hwpyv4qfp.cloudfront.net/designs/impress/js/main.js"></script>
-
         <script>
             // resize banner
             function InitLayout() {
@@ -74,28 +66,16 @@
                 InitLayout();
             });
         </script>
-
     </head>
-
     <body class="" lang="es">
-
-
-
-       
-
-
-
-
         <div id="top">
             <div id="header">
                 <div id="languages">
-
                 </div>
                 <div id="title">
                     <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
                             parqueos oso polar
                         </div>
-
                     </div>
                 </div>
                 <div class="mz_component mz_menu" id="menu">
@@ -104,45 +84,59 @@
                         </li>
                         <li class="selected"><a href="/servicios/" >Parqueos</a>
                             <ul>
-                                <li><a href="/servicios/nuevo/" >Nuevo</a>
-                                </li>
                                 <li class="selected"><a href="/servicios/ingresar/" >Ingresar</a>
                                 </li>
+                                <li><a href="/servicios/consultar/" >Consultar</a>
+                                </li>
+                                <li><a href="/servicios/modificar/" >Modificar</a>
+                                </li>
+                                <li><a href="/servicios/eliminar/" >Eliminar</a>
+                                </li>
                             </ul></li>
-                        <li><a href="/trabajos/" >Trabajos</a>
-                        </li>
-                        <li><a href="/sobre-mi/" >Sobre mÌ</a>
-                        </li>
+                        <li><a href="/trabajos/" >Clientes</a>
+                            <ul>
+                                <li><a href="/trabajos/agregar/" >Agregar</a>
+                                </li>
+                                <li><a href="/trabajos/consultar/" >Consultar</a>
+                                </li>
+                                <li><a href="/trabajos/eliminar/" >Eliminar</a>
+                                </li>
+                                <li><a href="/trabajos/modificar/" >Modificar</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/sobre-mi/" >Vehiculos</a>
+                            <ul>
+                                <li><a href="/sobre-mi/consular/" >Consular</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/precios/" >Precios</a>
+                            <ul>
+                                <li><a href="/precios/consular_modificar/" >Consultar y modificar</a>
+                                </li>
+                            </ul></li>
                         <li><a href="/contacto/" >Contacto</a>
-                        </li>
-                        <li><a href="/catalogo/" >Cat·logo</a>
+                            <ul>
+                                <li><a href="/contacto/tarifas/" >Tarifas</a>
+                                </li></ul>
                         </li></ul>
-
                 </div>
                 <br style="clear: both"/>
             </div>
         </div>
-
         <div id="belowfold">
-
             <div id="wrap">
-
-
                 <div class="mz_component mz_menu" id="submenu">
                     <ul>
-                        <li><a href="/servicios/nuevo/" >Nuevo</a>
-                        </li>
                         <li class="selected"><a href="/servicios/ingresar/" >Ingresar</a>
+                        </li>
+                        <li><a href="/servicios/consultar/" >Consultar</a>
+                        </li>
+                        <li><a href="/servicios/modificar/" >Modificar</a>
+                        </li>
+                        <li><a href="/servicios/eliminar/" >Eliminar</a>
                         </li></ul>
-                    </li></ul>
-
                 </div>
-
-
-
-
                 <script>
-
                     var webformFx = function (form) {
 
                         this.gatherData = function ()
@@ -217,7 +211,7 @@
                                     href: '/servicios/ingresar/params/submitted/' + componentID + '/'
                                 },
                                 errors: {
-                                    maintenance: 'No podemos procesar tu solicitud en este momento. Intenta de nuevo m·s tarde.'
+                                    maintenance: 'No podemos procesar tu solicitud en este momento. Intenta de nuevo m√°s tarde.'
                                 }
                             });
                         } else
@@ -227,58 +221,61 @@
 
                         return false;
                     };
-
                 </script>
                 <div class="mz_component mz_grid" data-cid="11026046" data-pid="2557857">
 
                     <div class="section section-customizable" data-rowid="1230115">
                         <div class="container">
                             <div class="gridrow">
-                                <div class="column-12-12" data-cellid="1620452">
+                                <div class="column-8-12" data-cellid="1635766">
                                     <div id="editable">
-                                        <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
-                                                <h1>Ingresar nuevo parqueo</h1>
+                                        <div class="mz_component mz_wysiwyg mz_editable"><div class="moze-wysiwyg-editor moze-no-select-border" >
+                                                <h1>Registrar parqueo</h1>
                                             </div>
-
                                         </div>
-                                        <div class="mz_component mz_editable mz_form" data-cid="11026047">            <form action="CustomerInfoServlet" class="moze-form" method="get" data-failuremsg = "Rellena todos los campos obligatorios." onsubmit="javascript:webformFx($(this))">
+                                        <div class="mz_component mz_editable mz_form" data-cid="11026047">
+                                            <form action="ParkingLotInfoServlet" class="moze-form" method="get">
                                                 <label>Nombre</label><br />
-                                                <input name="moze-webform-ctrl-1231036" type="text" data-required="textbox" />
+                                                <input name="name" type="text" data-required="textbox" />
                                                 <span title="Obligatorio">*</span>
                                                 <br />
                                                 <label>Cantidad de espacios</label><br />
-                                                <input name="moze-webform-ctrl-1231058" type="text" data-required="textbox" />
+                                                <input name="numberOfSpaces" type="text" data-required="textbox" />
                                                 <span title="Obligatorio">*</span>
                                                 <br />
                                                 <label>Espacios preferenciales</label><br />
-                                                <input name="moze-webform-ctrl-1231059" type="text" data-required="textbox" />
+                                                <input name="numberOfSpacesDisabilityPresented" type="text" data-required="textbox" />
                                                 <span title="Obligatorio">*</span>
                                                 <br />
-                                                
+                                                <input class="mz_notforhumans" name="moze-webform-ctrl-slazds" tabindex="-1" type="text" />
                                                 <input class="moze-formbutton" type="submit" value="Registrar" />
                                             </form>
-
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column-4-12" data-cellid="1635767">
+                                    <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
+                                            <h2><br></h2><h2><img src="//site-510712.mozfiles.com/files/510712/oso.gif-c200" style="width: 227px;"><br></h2>
                                         </div>
                                     </div>                        </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
             <div id="bottom">
                 <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
-                        PIE PAGINA
+                        Proyecto Programaci√≥n 2 - UCR 2017
                     </div>
-
                 </div>
                 <div id="social">
-
                 </div>
                 <br class="clear">
             </div>
         </div>
+        <!-- This is a secret trap for spam robots, do not go to this link -->
+        <a class="mz_notforhumans" href="/meduspods/">&nbsp;.</a>
+
     </body>
 
 </html>

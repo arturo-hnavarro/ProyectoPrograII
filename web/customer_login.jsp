@@ -73,7 +73,7 @@
                                 Nombre de usuario: 
                             </td>
                             <td>
-                                <input type="text" name="username">
+                                
                             </td>
                         </tr>
                             

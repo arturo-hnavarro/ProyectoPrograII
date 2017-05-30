@@ -21,6 +21,12 @@ public class ParkingLot {
     private Space[] spaces;
 
     public ParkingLot() {
+    }    
+
+    public ParkingLot(String name, int numberOfSpaces) {
+        this.id = numberOfParkingLot++;
+        this.name = name;
+        this.numberOfSpaces = numberOfSpaces;
     }
 
     public ParkingLot(int id, String name, int numberOfSpaces, ArrayList<Vehicle> vehicles, Space[] spaces) {
@@ -30,9 +36,7 @@ public class ParkingLot {
         this.vehicles = vehicles;
         this.spaces = spaces;
     }
-
- 
-
+    
     public ParkingLot(String name, int numberOfSpaces, ArrayList<Vehicle> vehicles, Space[] spaces) {
         this.id = numberOfParkingLot++;
         this.name = name;
@@ -89,5 +93,4 @@ public class ParkingLot {
         }
         return string += "}\n";
     }
-
 }
