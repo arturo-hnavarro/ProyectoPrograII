@@ -17,6 +17,8 @@ public class Vehicle {
     private String color;
     private String brand;
     private String model;
+    private String comments;//Observations about the Vehicle
+    private int idParkingLot;
     private ArrayList<Customer> customers = new ArrayList<>();
     private VehicleType vehicleType;
 
@@ -24,12 +26,23 @@ public class Vehicle {
         customers = new ArrayList<>();
     }
 
-    public Vehicle(String plate, String color, String brand, String model, Customer customer, VehicleType vehicleType) {
+    public Vehicle(String plate, String color, String brand,String comments, String model, VehicleType vehicleType) {
         this.plate = plate;
         this.color = color;
         this.brand = brand;
         this.model = model;
-        this.customers.add(customer);
+        this.comments = comments;
+        this.vehicleType = vehicleType;
+        customers = new ArrayList<>();
+    }
+
+    public Vehicle(String plate, String color, String brand, String model, String comments, int idParkingLot, VehicleType vehicleType) {
+        this.plate = plate;
+        this.color = color;
+        this.brand = brand;
+        this.model = model;
+        this.comments = comments;
+        this.idParkingLot = idParkingLot;
         this.vehicleType = vehicleType;
     }
 
@@ -57,6 +70,22 @@ public class Vehicle {
         this.brand = brand;
     }
 
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+    
     public String getModel() {
         return model;
     }
@@ -81,4 +110,16 @@ public class Vehicle {
         this.vehicleType = vehiculeType;
     }
 
+    public int getIdParkingLot() {
+        return idParkingLot;
+    }
+
+    public void setIdParkingLot(int idParkingLot) {
+        this.idParkingLot = idParkingLot;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" + "plate=" + plate + ", color=" + color + ", brand=" + brand + ", model=" + model + ", comments=" + comments + ", idParkingLot=" + idParkingLot + ", customers=" + customers + ", vehicleType=" + vehicleType + '}';
+    }
 }

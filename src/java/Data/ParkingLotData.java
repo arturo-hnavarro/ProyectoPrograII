@@ -107,6 +107,7 @@ public class ParkingLotData {
     }
 
     public int registerVehicleInParkingLot(Vehicle vehicle, ParkingLot parkingLot) throws ParseException, IOException {
+        System.out.println("llego a registerVehicleInParkingLot");
         updateParkingLotsFromFile();
         ArrayList<Vehicle> vehiclesInParkingLot = parkingLot.getVehicles();
         Space spaces[] = parkingLot.getSpaces();
@@ -220,7 +221,8 @@ public class ParkingLotData {
                 vehicleType.setDescription(currentVehicleType.get("description").toString());
                 vehicleType.setNumberOfTires(Byte.parseByte(currentVehicleType.get("numberOfTires").toString()));
                 vehicleType.setFee(Float.parseFloat(currentVehicleType.get("fee").toString()));
-                Vehicle currentVehicle = new Vehicle(plate, color, brand, model, new Customer(), vehicleType);
+                Vehicle currentVehicle = new Vehicle(plate, color, brand, model, model, parkingLotId, vehicleType);
+//                Vehicle currentVehicle = new Vehicle(plate, color, brand, model, new Customer(), vehicleType);
                 vehiclesToshow.add(currentVehicle);
             }
         }
@@ -313,7 +315,35 @@ public class ParkingLotData {
             // Or we could just do this: 
             // ex.printStackTrace();
         }
+        System.out.println("Actualizado \n" + parkingLots.get(0).toString());
 
+    }
+
+    public ParkingLot getParkingLotByName(String parkingLotName) throws ParseException {
+        
+        parkingLotName= "Parque del Norte";
+        updateParkingLotsFromFile();
+        ParkingLot parkingLot = null;
+        //Search the parkingLot
+        int start = 0;
+        int end = parkingLots.size();
+        
+        while( start <= end && parkingLot == null  ){
+            int middle = (start+end)/2;
+            System.out.println("middle "+middle);
+            System.out.println("aqui: --> "+parkingLotName   );
+            boolean b = parkingLots.get(middle).getName().compareToIgnoreCase(parkingLotName) == 0; 
+            
+            if (parkingLots.get(middle).getName().compareToIgnoreCase(parkingLotName) == 0   ) {
+                parkingLot = parkingLots.get(middle);
+            }
+            else if (parkingLots.get(middle).getName().compareToIgnoreCase(parkingLotName) < 0 ){
+                start = middle+1;
+            }
+            else
+                end = middle-1;
+        }//while
+        return parkingLot;
     }
 
 }

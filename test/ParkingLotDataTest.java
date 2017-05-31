@@ -107,7 +107,7 @@ public class ParkingLotDataTest {
         
         Customer customer = new Customer("102340567", "Juan", "De las Palomas", "1234", true);
         VehicleType vehicleType = new VehicleType(1, "Bicicleta", (byte)2, 200);
-        Vehicle vehicle = new Vehicle("304051", "gris", "Isuzu", "2017", customer, vehicleType);
+        Vehicle vehicle = new Vehicle("12312", "color", "brand", "model", "comments", 0, vehicleType);
         
         //ParkingLot 1
         ArrayList<Vehicle> vehicles = new ArrayList<>();

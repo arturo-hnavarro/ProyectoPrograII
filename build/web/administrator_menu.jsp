@@ -3,14 +3,9 @@
     Created on : 18/05/2017, 06:57:54 PM
     Author     : Arturo
 --%>
-
-
 <!doctype html>
-
 <html>
-
     <head>
-
         <title>parqueos oso polar - Menu de administrador</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
@@ -22,15 +17,11 @@
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/editable.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/animation.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/theme-stripe.css?v=1.241" type="text/css" />
-
         <link href="https://dss4hwpyv4qfp.cloudfront.net/mozello.ico" rel="shortcut icon">
-
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/backend/css/backend.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/libs/js/fancybox/jquery.fancybox.css?v=1.241" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="https://dss4hwpyv4qfp.cloudfront.net/cache/preview-es.1.241.js"></script>
-
-
         <style class="customizer">
             #title { background-color :  #05679b  }
             #title:after { border-top-color :  #05679b  }
@@ -55,12 +46,7 @@
         </style>
         <style class="customizer-fonts">
         </style>
-
-
-
-
         <script src="https://dss4hwpyv4qfp.cloudfront.net/designs/impress/js/main.js"></script>
-
         <script>
             // resize banner
             function InitLayout() {
@@ -82,9 +68,7 @@
         </script>
 
     </head>
-
     <body class="" lang="es">
-
         <div id="bigbar">
             <div class="mz_component mz_banner">
                 <div class="moze-banner default" style="background-image: url('https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/banner-bg.jpg'); display: none"></div>
@@ -100,12 +84,10 @@
                             <div class="bigbar-h1"><div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
                                         Parqueos Oso Polar
                                     </div>
-
                                 </div></div>
                             <div class="bigbar-h2"><div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
                                         Iniciar sesión
                                     </div>
-
                                 </div></div>
                         </div>
                         <a id="bigbar-down" href="#top">&nbsp;</a>
@@ -113,17 +95,14 @@
                 </div>
             </div>
         </div>
-
         <div id="top">
             <div id="header">
                 <div id="languages">
-
                 </div>
                 <div id="title">
                     <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
                             parqueos oso polar
                         </div>
-
                     </div>
                 </div>
                 <div class="mz_component mz_menu" id="menu">

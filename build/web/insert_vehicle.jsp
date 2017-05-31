@@ -1,148 +1,279 @@
-<%-- 
-    Document   : insert_vehicle
-    Created on : 04/05/2017, 10:53:04 AM
-    Author     : Arturo
---%>
 
+<!doctype html>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
-        <meta charset=UTF-8">
-        <title>Insertar vehiculo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <style>
-            body,h1 {font-family: "Raleway", sans-serif}
-            body, html {height: 100%}
-            .bgimg {
-                background-image: url('/w3images/forestbridge.jpg');
-                min-height: 100%;
-                background-position: center;
-                background-size: cover;
-            }
+        <title>Registrar vehículo en parqueo</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+        <link href="//fonts.googleapis.com/css?family=Exo+2:300,500,600,regular,italic&subset=latin,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/_shared/css/layout-shared.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/_shared/css/menu-bones.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/layout.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/editable.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/animation.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/theme-stripe.css?v=1.241" type="text/css" />
+        <link href="https://dss4hwpyv4qfp.cloudfront.net/mozello.ico" rel="shortcut icon">
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/backend/css/backend.css?v=1.241" type="text/css" />
+        <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/libs/js/fancybox/jquery.fancybox.css?v=1.241" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://dss4hwpyv4qfp.cloudfront.net/cache/preview-es.1.241.js"></script>
+        <style class="customizer">
+            #title { background-color :  #05679b  }
+            #title:after { border-top-color :  #05679b  }
+            #title .mz_wysiwyg { color :  #ffffff  }
+            #menu > ul > li > a { color :  #ffffff  }
+            #menu > ul > li.selected > a, #menu > ul > li > a:hover { color :  #0088d1  }
+            #bigbar-colorizer { background-color :  hsla(0, 0%, 0%, 0.5)  }
+            #languages li > a { color :  #ffffff  }
+            #languages li > a.selected, #languages li > a:hover { background-color :  #05679b  }
+            #languages li > a.selected, #languages li > a:hover { color :  #ffffff  }
+            a, .mz_editable a { color :  #0088d1  }
+            a:hover, .mz_editable a:hover, .mz_recentposts a:hover { color :  #05679b  }
+            .moze-form .moze-formbutton, .moze-button, .moze-button-large, ul.moze-gallery li, #submenu li:hover a, #submenu li.selected a { background-color :  #05679b  }
+            .moze-form .moze-formbutton:hover, .moze-button:hover, .moze-button-large:hover { background-color :  #a0a0a0  }
+            .mz_editable h1, .mz_editable h1.moze-megatitle, .mz_editable h1 a { color :  #444444  }
+            .mz_editable h2, .sidebox h2 { color :  #444444  }
+            .mz_editable h3 { color :  #444444  }
+            body { background-color :  #05679b  }
+            #bottom .mz_editable { color :  #a3dfff  }
+            #bottom a { color :  #ffffff  }
+            #bottom a:hover { color :  #a3dfff  }
         </style>
+        <style class="customizer-fonts">
+        </style>
+        <script src="https://dss4hwpyv4qfp.cloudfront.net/designs/impress/js/main.js"></script>
+        <script>
+            // resize banner
+            function InitLayout() {
+                //var setHeight = $("#bigbar").outerHeight();
+                //$('#bigbar>div.mz_banner').css("min-height", setHeight);
+            }
+            $(document).ready(function () {
+                // Resize on window size
+                $(window).resize(function () {
+                    InitLayout();
+                });
+                // Resize on key up
+                $("#bigbar").keyup(function () {
+                    InitLayout();
+                });
+                // Resize on load
+                InitLayout();
+            });
+        </script>
     </head>
-    <style type="text/css">
+    <body class="" lang="es">
+        <div id="top">
+            <div id="header">
+                <div id="languages">
 
-        * {
-            margin:0px;
-            padding:0px;
-        }
-        #header {
-            margin:auto;
-            width:500px;
-            font-family:Arial, Helvetica, sans-serif;
-        }
+                </div>
+                <div id="title">
+                    <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
+                            parqueos oso polar
+                        </div>
+                    </div>
+                </div>
+                <div class="mz_component mz_menu" id="menu">
+                    <ul>
+                        <li><a href="/" >Inicio</a>
+                        </li>
+                        <li><a href="/servicios/" >Parqueos</a>
+                            <ul>
+                                <li><a href="/servicios/ingresar/" >Ingresar</a>
+                                </li>
+                                <li><a href="/servicios/consultar/" >Consultar</a>
+                                </li>
+                                <li><a href="/servicios/modificar/" >Modificar</a>
+                                </li>
+                                <li><a href="/servicios/eliminar/" >Eliminar</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/trabajos/" >Clientes</a>
+                            <ul>
+                                <li><a href="/trabajos/agregar/" >Agregar</a>
+                                </li>
+                                <li><a href="/trabajos/consultar/" >Consultar</a>
+                                </li>
+                                <li><a href="/trabajos/eliminar/" >Eliminar</a>
+                                </li>
+                                <li><a href="/trabajos/modificar/" >Modificar</a>
+                                </li>
+                            </ul></li>
+                        <li class="selected"><a href="/sobre-mi/" >Vehiculos</a>
+                            <ul>
+                                <li><a href="/sobre-mi/consular/" >Consular</a>
+                                </li>
+                                <li class="selected"><a href="/sobre-mi/registrar-en-parqueo/" >Registrar en parqueo</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/precios/" >Precios</a>
+                            <ul>
+                                <li><a href="/precios/consular_modificar/" >Consultar y modificar</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/contacto/" >Contacto</a>
+                            <ul>
+                                <li><a href="/contacto/tarifas/" >Tarifas</a>
+                                </li>
+                            </ul></li>
+                        <li><a href="/spaces/" >Espacios</a>
+                        </li></ul>
+                </div>
+                <br style="clear: both"/>
+            </div>
+        </div>
+        <div id="belowfold">
+            <div id="wrap">
+                <div class="mz_component mz_menu" id="submenu">
+                    <ul>
+                        <li><a href="/sobre-mi/consular/" >Consular</a>
+                        </li>
+                        <li class="selected"><a href="/sobre-mi/registrar-en-parqueo/" >Registrar en parqueo</a>
+                        </li></ul>
+                </div>
+                <script>
+                    var webformFx = function (form) {
 
-        ul, ol {
-            list-style:none;
-        }
+                        this.gatherData = function ()
+                        {
+                            var result = {};
+                            $(form).find('[name^="moze-webform-ctrl-"]').each(function () {
+                                if ($(this).attr('type') == 'checkbox') {
+                                    result[$(this).attr('name')] = $(this).is(':checked') ? 1 : 0;
+                                } else {
+                                    result[$(this).attr('name')] = $.trim($(this).val());
+                                }
+                            });
+                            return result;
+                        };
+                        this.validateForm = function ()
+                        {
+                            var requiredCtrls = form.find('[data-required]');
+                            var result = true;
+                            requiredCtrls.removeClass('moze-formerror');
+                            $.each(requiredCtrls, function () {
+                                var subresult;
+                                var validator = $(this).data('required');
+                                switch (validator) {
+                                    case 'textbox':
+                                        subresult = $(this).val() !== '';
+                                        break;
+                                    case 'multiline':
+                                        subresult = $(this).val() !== '';
+                                        break;
+                                    case 'checkbox':
+                                        subresult = $(this).is(':checked');
+                                        break;
+                                    case 'combobox':
+                                        subresult = $(this).val() !== '';
+                                        break;
+                                    case 'email':
+                                        subresult = $.trim($(this).val()).match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/i) !== null;
+                                        break;
+                                }
+                                if (subresult === false) {
+                                    $(this).addClass('moze-formerror');
+                                }
+                                result = result && subresult;
+                            });
+                            return result;
+                        };
+                        if (this.validateForm())
+                        {
+                            var componentID = $(form).parent('div.mz_form').data('cid');
+                            mozLive({
+                                src: {id: componentID},
+                                dest: null,
+                                action: 'webform-submit',
+                                task: 'redirect',
+                                parameters: {
+                                    data: this.gatherData(),
+                                    href: '/sobre-mi/registrar-en-parqueo/params/submitted/' + componentID + '/'
+                                },
+                                errors: {
+                                    maintenance: 'No podemos procesar tu solicitud en este momento. Intenta de nuevo más tarde.'
+                                }
+                            });
+                        } else
+                        {
+                            alert($(form).data('failuremsg'));
+                        }
+                        return false;
+                    };
+                </script>
+                <div class="mz_component mz_grid" data-cid="11239747" data-pid="2610546">
+                    <div class="section section-customizable" data-rowid="1290424">
+                        <div class="container">
+                            <div class="gridrow">
+                                <div class="column-12-12" data-cellid="1699307">
+                                    <div id="editable">
+                                        <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
+                                                <h1>Registrar vehículo</h1><p>Datos del vehículo</p>
+                                            </div>
+                                        </div>
+                                        <div class="mz_component mz_editable mz_form" data-cid="11240218">            
+                                            <form action="VehicleInfoServlet" class="moze-form" method="get" data-failuremsg = "Rellena todos los campos obligatorios." onsubmit="javascript:webformFx($(this))">
+                                                <label>Placa</label><br />
+                                                <input name="plate" type="text" data-required="textbox" />
+                                                <span title="Obligatorio">*</span>
+                                                <br />
+                                                <label>Color</label><br />
+                                                <input name="color" type="text"  />
+                                                <br />
+                                                <label>Marca</label><br />
+                                                <input name="brand" type="text"  />
+                                                <br />
+                                                <label>Modelo</label><br />
+                                                <input name="model" type="text"  />
+                                                <br />
+                                                <label>Tipo</label><br />
+                                                <input name="vehicleTypeId" type="text"  />
+                                                <br />
+                                                <label>Parqueo</label><br />
+                                                <select id="uno" name="parkingLotName" data-required="combobox" >
+                                                    <!-- TODO: Agregar los parqueos desde el archivo -->
+                                                    <option value="">-- Seleccione un parqueo--</option>
+                                                    <option value="Parque del Norte">Parque del Norte</option>
+                                                    <option value="parkingLot1">Parqueo 2</option>
+                                                    <option value="parkingLot1">Parqueo 3</option>
+                                                </select>
+                                                <script type="text/javascript">
+                                                    var e = document.getElementById("uno");
+                                                    var value = e.options[e.selectedIndex].value;
+                                                    var text = e.options[e.selectedIndex].text;
+                                                </script>
+                                                <br />
+                                                <label>Observaciones</label><br />
+                                                <textarea name="comments"></textarea>
+                                                <br />
+                                                <input class="mz_notforhumans" name="comments1" tabindex="-1" type="text" />
+                                                <input class="mz_notforhumans" name="moze-webform-ctrl-slazds" tabindex="-1" type="text" />
 
-        .nav > li {
-            float:left;
-        }
-
-        .nav li a {
-            background-color:#123;
-            color:#fff;
-            text-decoration:none;
-            padding:10px 12px;
-            display:block;
-        }
-
-        .nav li a:hover {
-            background-color:#434343;
-        }
-
-        .nav li ul {
-            display:none;
-            position:absolute;
-            min-width:140px;
-        }
-
-        .nav li:hover > ul {
-            display:block;
-        }
-
-        .nav li ul li {
-            position:relative;
-        }
-
-
-        .nav li ul li ul {
-            right:-140px;
-            top:0px;
-        }
-
-    </style>
-</head>
-<body>
-    <div id="header">
-        <ul class="nav">
-            <li><a href="">Inicio</a></li>
-            <li><a href="">Clientes</a>
-                <ul>
-                    <li><a href="./insert_customer.jsp">Insertar persona(s) autorizada(s) por vehiculo</a></li>
-                    <li><a href="VehicleRetrievalServlet"> Consultar persona(s) autorizada(s) por vehiculo</a></li>
-                    <li><a href="VehicleCustomerRetrievalServlet">Modificar persona(s) autorizada(s) por vehiculo</a></li>
-                    <li><a href="CustomerRetrievalServlet">Retirar persona(s) autorizada(s) por vehiculo</a></li>
-                </ul>
-            </li>
-            <li><a href="">Vehiculos</a>
-                <ul>
-                    <li><a href="insert_vehicle.jsp">Insertar</a></li>
-                    <li><a href="">Submenu2</a></li>
-                    <li><a href="">Submenu3</a></li>
-                    <li><a href="">Submenu4</a></li>
-                </ul>
-            </li>
-            <li><a href="">Contacto</a></li>
-        </ul>
-    </div>
-    <div id="main">
-        <br><br><h2>Datos del vehiculo</h2>
-        <form action="CustomerInfoServlet" method="get">
-            <table>
-                <tr>
-                    <td>Placa:</td>
-                    <td><input type="text" name="plate"></td>
-                </tr>
-                <tr>
-                    <td>Color:</td>
-                    <td><input type="text" name="color"></td>
-                </tr>
-                <tr>
-                    <td>Marca:</td>
-                    <td><input type="text" name="brand"></td>
-                </tr>
-                <tr>
-                    <td>Modelo:</td>
-                    <td><input type="text" name="model"></td>
-                </tr>
-                <tr>
-                    <td>Clientes:</td>
-                    <td><a  href="insert_customer.jsp">
-                            <input value="Insertar" type="text" style="color: blue"  name="customers">
-                        </a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>Tipo de vehiculo:</td>
-                    <td><input type="text" name="vehicleType"></td>
-                </tr>
-            </table><br>
-            <input type="submit" value="Guardar vehiculo"/>
-        </form>
-
-
-
-    </div>
-
-
-
-</body>
+                                                <input class="moze-formbutton" type="submit" value="Guardar y registrar cliente" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom">
+                <div class="mz_component mz_wysiwyg mz_editable">    
+                    <div class="moze-wysiwyg-editor moze-no-select-border" >
+                        Proyecto programación 2 - UCR 2017
+                        <br/>Desarroladores: 
+                        <br/>Arturo Hernández Navarro.
+                        <br/>Samuel Serrano.
+                    </div>
+                </div>
+                <br class="clear">
+            </div>
+        </div>
+        <!-- This is a secret trap for spam robots, do not go to this link -->
+        <a class="mz_notforhumans" href="/meduspods/">&nbsp;.</a>
+    </body>
 </html>

@@ -62,11 +62,8 @@ body, html {height: 100%}
                     </td>
                 </tr>
             </table>
-          
-            
             <input type="submit" value="Registrar otro(s)"/>
             <input type="submit" value="Guardar cliente(s)"/>
-            
         </form>
     </body>
 </html>

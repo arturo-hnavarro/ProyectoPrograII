@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Esteban
+ * @author Arturo
  */
 @WebServlet(name = "CustomerInfoServlet", urlPatterns = {"/CustomerInfoServlet"})
 public class CustomerInfoServlet extends HttpServlet {
@@ -83,6 +83,7 @@ public class CustomerInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
