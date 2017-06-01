@@ -41,10 +41,10 @@ public class ParkingLotBusiness {
     }
     
     public int registerVehicleInParkingLot(Vehicle vehicle, ParkingLot parkingLot) throws ParseException, IOException{
-        System.out.println("estoy en Business" );
+//        System.out.println("estoy en Business" );
         System.out.println("INFO VEHICLE "+vehicle.toString());
-        return parkingLotData.registerVehicleInParkingLot(vehicle, parkingLot);
-//        return parkingLotData.registerVehicleInParkingLot(vehicle, parkingLot);
+        int i = parkingLotData.registerVehicleInParkingLot(vehicle, parkingLot);;
+        return i;
     }
     
 //    public void removeVehicleFromParkingLot(Vehicle vehicle, ParkingLot parkingLot){

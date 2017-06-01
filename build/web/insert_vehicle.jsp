@@ -232,18 +232,13 @@
                                                 <input name="vehicleTypeId" type="text"  />
                                                 <br />
                                                 <label>Parqueo</label><br />
-                                                <select id="uno" name="parkingLotName" data-required="combobox" >
+                                                <select id="parkingLotName" name="parkingLotName" data-required="combobox" >
                                                     <!-- TODO: Agregar los parqueos desde el archivo -->
                                                     <option value="">-- Seleccione un parqueo--</option>
                                                     <option value="Parque del Norte">Parque del Norte</option>
                                                     <option value="parkingLot1">Parqueo 2</option>
                                                     <option value="parkingLot1">Parqueo 3</option>
                                                 </select>
-                                                <script type="text/javascript">
-                                                    var e = document.getElementById("uno");
-                                                    var value = e.options[e.selectedIndex].value;
-                                                    var text = e.options[e.selectedIndex].text;
-                                                </script>
                                                 <br />
                                                 <label>Observaciones</label><br />
                                                 <textarea name="comments"></textarea>

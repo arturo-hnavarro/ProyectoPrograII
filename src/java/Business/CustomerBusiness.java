@@ -34,9 +34,7 @@ public class CustomerBusiness implements UserOperations {
     public void insertCustomer(Customer customer) {
         try {
             customerData.insertCustomer(customer);
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerBusiness.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (IOException | ParseException ex) {
             Logger.getLogger(CustomerBusiness.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

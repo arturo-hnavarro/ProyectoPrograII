@@ -9,16 +9,16 @@ package Domain;
  *
  * @author Esteban
  */
-public class Customer extends User implements Employee{
+public class Customer extends User implements Employee {
 
     private boolean disabilityPresented;
 
     public Customer() {
-    super();
-    } 
-    
-    public Customer(String identification, String name, String username, String password, boolean disabilityPresented) {
-        super(identification, name, username, password,"customer");
+        super();
+    }
+
+    public Customer(boolean disabilityPresented, String identification, String name, String username, String password, String role) {
+        super(identification, name, username, password, role);
         this.disabilityPresented = disabilityPresented;
     }
 
@@ -33,10 +33,11 @@ public class Customer extends User implements Employee{
     @Override
     public boolean verifyUserLogin(String[] loginDetails) {
         boolean isLoginSuccesful = false;
-                
-        if (loginDetails[0].equalsIgnoreCase(this.getUsername()) && loginDetails[1].equals(this.getPassword())  )
+
+        if (loginDetails[0].equalsIgnoreCase(this.getUsername()) && loginDetails[1].equals(this.getPassword())) {
             isLoginSuccesful = true;
-        
+        }
+
         return isLoginSuccesful;
     }
 
@@ -45,9 +46,8 @@ public class Customer extends User implements Employee{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public ParkingLot assignWorkplace(int parkingLotId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
+    @Override
+    public String toString() {
+        return "Customer{" + "disabilityPresented=" + disabilityPresented + '}' + super.toString();
+    }
 }

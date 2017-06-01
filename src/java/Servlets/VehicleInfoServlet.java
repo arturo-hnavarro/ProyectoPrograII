@@ -15,14 +15,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,18 +57,6 @@ public class VehicleInfoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-//            out.println("<title>Servlet VehicleInfoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-//            out.println("<h1>Servlet VehicleInfoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,6 +72,8 @@ public class VehicleInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         plate = request.getParameter("plate");
         color = request.getParameter("color");
@@ -99,19 +81,8 @@ public class VehicleInfoServlet extends HttpServlet {
         comments = request.getParameter("comments");
         model = request.getParameter("model");
         vehicleTypeId = request.getParameter("vehicleTypeId");//TODO: metodo para obtener vehicleTypeById
-        parkingLotName = request.getParameter("uno");//TODO: metodo para obtener parkingLotByName
+        parkingLotName = request.getParameter("parkingLotName");//TODO: metodo para obtener parkingLotByName
         VehicleType vehicleType = new VehicleType();
-
-        //Create a new Vehicle
-        Vehicle vehicle = new Vehicle(plate, color, brand, comments, model, vehicleType);
-//        request.setAttribute("vehicle", vehicle);
-
-        request.setAttribute("plate", plate);
-        request.setAttribute("color", color);
-        request.setAttribute("brand", brand);
-        request.setAttribute("comments", comments);
-        request.setAttribute("model", model);
-        request.setAttribute("vehicleTypeId", vehicleTypeId);
 
         RequestDispatcher dispacher = request.getRequestDispatcher("register_customer_to_vehicle.jsp");
         dispacher.forward(request, response);
@@ -129,37 +100,57 @@ public class VehicleInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        //Create a new Vehicle
+        VehicleType vehicleType = new VehicleType(3, "Camión", (byte) 4, (float) 4);
+
+        //Create the Customer
+        String identification = request.getParameter("id");
+        String name = request.getParameter("name");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String role = "Customer";
+        Boolean disabilityPresented = (request.getParameter("disabilityPresented").equals("yes"));
+
+        Customer customer = new Customer(disabilityPresented, identification, name, username, password, role);
+        Vehicle vehicle = new Vehicle(plate, color, brand, model, comments, 1, vehicleType, customer);
+        ParkingLot parkingLot = null;
+        int spaceGiven = 0;
+
         try {
-            processRequest(request, response);
-            //TODO: insertVehicle in parkingLot and save it in the file
-            System.out.println("Estoy en doPost VehicleServlet");
-
-//            String plate = request.getParameter("placa");
-            response.getWriter().print("<p> La variable vale " + plate + "</p>");
-//            String color = request.getParameter("color");
-//            String brand = request.getParameter("brand");
-//            String comments = request.getParameter("comments");
-//            String model = request.getParameter("model");
-//            String vehicleTypeId = request.getParameter("vehicleTypeId");//TODO: metodo para obtener vehicleTypeById
-//            String parkingLotName = request.getParameter("parkingLotName");//TODO: metodo para obtener parkingLotByName
-            VehicleType vehicleType = new VehicleType(1, "prueba", (byte) 4, (float) 234);
-
-            //Create a new Vehicle
-            Vehicle vehicle = new Vehicle(plate, color, brand, comments, model, vehicleType);
-            ParkingLot parkingLot = parkingLotBusiness.getParkingLotByName("Parque del Norte");
-
-            try {
-                //Insert the vehicle in ParkingLot
-                int spaceGiven = parkingLotBusiness.registerVehicleInParkingLot(vehicle, parkingLot);
-            } catch (ParseException ex) {
-                Logger.getLogger(VehicleInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher dispacher = request.getRequestDispatcher("register_customer_to_vehicle.jsp");
-            dispacher.forward(request, response);
+            parkingLot = parkingLotBusiness.getParkingLotByName("Parque del Norte");
+            spaceGiven = parkingLotBusiness.registerVehicleInParkingLot(vehicle, parkingLot);
 
         } catch (ParseException ex) {
             Logger.getLogger(VehicleInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Show the information of the complete process
+        response.setHeader("spaceGiven", ""+spaceGiven);
+        response.setHeader("parkingLotName", ""+parkingLotName);
+         //Vehicle info
+        response.setHeader("plate", ""+plate);
+        response.setHeader("color", ""+color);
+        response.setHeader("brand", ""+brand);
+        response.setHeader("model", ""+model);
+        response.setHeader("comments", ""+comments);
+        response.setHeader("vehicleTypeId", ""+vehicleTypeId);
+        
+ 
+        //Customer info
+        response.setHeader("identification", identification);
+        response.setHeader("name", name);
+        response.setHeader("username", username);
+        response.setHeader("password", password);
+        response.setHeader("disabilityPresented", disabilityPresented==true?"Sí":"No");
+        
+        
+
+        RequestDispatcher dispacher1 = request.getRequestDispatcher("show_vehicle_registered_in_parkingLot.jsp");
+        dispacher1.forward(request, response);
 
     }
 

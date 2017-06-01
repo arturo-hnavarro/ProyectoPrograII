@@ -146,7 +146,6 @@
                                                                         </td>
                                                                         <td style="text-align: center;"> Disponible</td>
                                                                         <td style="text-align: center;"> 
-
                                                                             <div  id="VehicleTypeHolder" >
                                                                                 <select  id="VehicleType" name="VehicleType" >
                                                                                     <option value="">Selecciona</option>

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Esteban
+ * @author Arturo
  */
 public class Vehicle {
 
@@ -19,7 +19,7 @@ public class Vehicle {
     private String model;
     private String comments;//Observations about the Vehicle
     private int idParkingLot;
-    private ArrayList<Customer> customers = new ArrayList<>();
+    private ArrayList<Customer> customers;
     private VehicleType vehicleType;
 
     public Vehicle() {
@@ -33,10 +33,10 @@ public class Vehicle {
         this.model = model;
         this.comments = comments;
         this.vehicleType = vehicleType;
-        customers = new ArrayList<>();
+        this.customers = new ArrayList<>();
     }
 
-    public Vehicle(String plate, String color, String brand, String model, String comments, int idParkingLot, VehicleType vehicleType) {
+    public Vehicle(String plate, String color, String brand, String model, String comments, int idParkingLot, VehicleType vehicleType, Customer customer) {
         this.plate = plate;
         this.color = color;
         this.brand = brand;
@@ -44,6 +44,8 @@ public class Vehicle {
         this.comments = comments;
         this.idParkingLot = idParkingLot;
         this.vehicleType = vehicleType;
+        this.customers = new ArrayList<>();
+        this.customers.add(customer);
     }
 
     public String getPlate() {

@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/insert_customer.jsp</file>
-            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/insert_spaces.jsp</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/modify_customers_registered_by_vehicle.jsp</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/register_customer_to_vehicle.jsp</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/insert_vehicle.jsp</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/src/java/Servlets/VehicleInfoServlet.java</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/modify_customers_by_vehicle.jsp</file>
+            <file>file:/C:/Users/Arturo/Documents/NetBeansProjects/Proyecto-Programacion2/ProyectoPrograII/web/show_vehicle_registered_in_parkingLot.jsp</file>
         </group>
     </open-files>
 </project-private>

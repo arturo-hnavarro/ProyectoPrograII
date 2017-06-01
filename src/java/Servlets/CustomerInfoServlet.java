@@ -63,7 +63,7 @@ public class CustomerInfoServlet extends HttpServlet {
         boolean isDisabilityPresented = Boolean.parseBoolean(request.getParameter("isDisabilityPresented"));
         //here the insertion of Customer takes place
         
-        Customer customer = new Customer(identification, name, username, password, isDisabilityPresented);
+        Customer customer = new Customer(isDisabilityPresented, identification, name, username, password, "customer");
         CustomerBusiness customerBusiness = new CustomerBusiness();
         customerBusiness.insertCustomer(customer);
 

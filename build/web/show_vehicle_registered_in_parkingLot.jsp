@@ -1,9 +1,33 @@
+<%-- 
+    Document   : show_vehicle_registered_in_parkingLot
+    Created on : 31/05/2017, 08:47:27 AM
+    Author     : Arturo
+--%>
 
 <!doctype html>
 
 <html>
     <head>
-        <title>Registrar vehículo en parqueo</title>
+        <title>parqueos oso polar - Agregar</title>
+
+        <%
+            String spaceGiven = response.getHeader("spaceGiven");
+            String parkingLotName = response.getHeader("parkingLotName");
+
+            //Vehicle info
+            String plate = response.getHeader("plate");
+            String color = response.getHeader("color");
+            String brand = response.getHeader("brand");
+            String model = response.getHeader("model");
+            String comments = response.getHeader("comments");
+            String vehicleTypeId = response.getHeader("vehicleTypeId");
+
+            //Customer info
+            String identification = response.getHeader("identification");
+            String name = response.getHeader("name");
+            String username = response.getHeader("username");
+            String disabilityPresented = response.getHeader("disabilityPresented");
+        %>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
         <link href="//fonts.googleapis.com/css?family=Exo+2:300,500,600,regular,italic&subset=latin,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
@@ -13,7 +37,7 @@
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/editable.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/animation.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/designs/impress-stripe/css/theme-stripe.css?v=1.241" type="text/css" />
-        <link href="https://dss4hwpyv4qfp.cloudfront.net/mozello.ico" rel="shortcut icon">
+        <link href="https://dss4hwpyv4qfp.cloudfront.net/mozello.ico" rel="shortcut icon">  
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/backend/css/backend.css?v=1.241" type="text/css" />
         <link rel="stylesheet" href="https://dss4hwpyv4qfp.cloudfront.net/libs/js/fancybox/jquery.fancybox.css?v=1.241" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -62,12 +86,13 @@
                 InitLayout();
             });
         </script>
+
     </head>
+
     <body class="" lang="es">
         <div id="top">
             <div id="header">
                 <div id="languages">
-
                 </div>
                 <div id="title">
                     <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
@@ -90,7 +115,7 @@
                                 <li><a href="/servicios/eliminar/" >Eliminar</a>
                                 </li>
                             </ul></li>
-                        <li><a href="/trabajos/" >Clientes</a>
+                        <li ><a href="/trabajos/" >Clientes</a>
                             <ul>
                                 <li><a href="/trabajos/agregar/" >Agregar</a>
                                 </li>
@@ -128,12 +153,18 @@
             <div id="wrap">
                 <div class="mz_component mz_menu" id="submenu">
                     <ul>
-                        <li><a href="/sobre-mi/consular/" >Consular</a>
+                        <li class="selected"><a href="/trabajos/agregar/" >Agregar</a>
                         </li>
-                        <li class="selected"><a href="/sobre-mi/registrar-en-parqueo/" >Registrar en parqueo</a>
+                        <li><a href="/trabajos/consultar/" >Consultar</a>
+                        </li>
+                        <li><a href="/trabajos/eliminar/" >Eliminar</a>
+                        </li>
+                        <li><a href="/trabajos/modificar/" >Modificar</a>
                         </li></ul>
+
                 </div>
                 <script>
+
                     var webformFx = function (form) {
 
                         this.gatherData = function ()
@@ -148,41 +179,56 @@
                             });
                             return result;
                         };
+
                         this.validateForm = function ()
                         {
                             var requiredCtrls = form.find('[data-required]');
                             var result = true;
+
                             requiredCtrls.removeClass('moze-formerror');
+
                             $.each(requiredCtrls, function () {
+
                                 var subresult;
                                 var validator = $(this).data('required');
+
                                 switch (validator) {
+
                                     case 'textbox':
                                         subresult = $(this).val() !== '';
                                         break;
+
                                     case 'multiline':
                                         subresult = $(this).val() !== '';
                                         break;
+
                                     case 'checkbox':
                                         subresult = $(this).is(':checked');
                                         break;
+
                                     case 'combobox':
                                         subresult = $(this).val() !== '';
                                         break;
+
                                     case 'email':
                                         subresult = $.trim($(this).val()).match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/i) !== null;
                                         break;
                                 }
+
                                 if (subresult === false) {
                                     $(this).addClass('moze-formerror');
                                 }
                                 result = result && subresult;
+
                             });
+
                             return result;
                         };
+
                         if (this.validateForm())
                         {
                             var componentID = $(form).parent('div.mz_form').data('cid');
+
                             mozLive({
                                 src: {id: componentID},
                                 dest: null,
@@ -190,7 +236,7 @@
                                 task: 'redirect',
                                 parameters: {
                                     data: this.gatherData(),
-                                    href: '/sobre-mi/registrar-en-parqueo/params/submitted/' + componentID + '/'
+                                    href: '/trabajos/agregar/params/submitted/' + componentID + '/'
                                 },
                                 errors: {
                                     maintenance: 'No podemos procesar tu solicitud en este momento. Intenta de nuevo más tarde.'
@@ -203,51 +249,33 @@
                         return false;
                     };
                 </script>
-                <div class="mz_component mz_grid" data-cid="11239747" data-pid="2610546">
-                    <div class="section section-customizable" data-rowid="1290424">
+                <div class="mz_component mz_grid" data-cid="11084944" data-pid="2572129">
+                    <div class="section section-customizable" data-rowid="1290593">
                         <div class="container">
                             <div class="gridrow">
-                                <div class="column-12-12" data-cellid="1699307">
+                                <div class="column-8-12" data-cellid="1699545">
                                     <div id="editable">
-                                        <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor moze-no-select-border" >
-                                                <h1>Registrar vehículo</h1><p>Datos del vehículo</p>
+                                        <div class="mz_component mz_wysiwyg mz_editable">
+                                            <div class="moze-wysiwyg-editor moze-no-select-border" >
+                                                <h1>Registrar vehículo</h1>
+                                                <p>Proceso completado. Información del registro. </p>
+                                                <span class="moze-important">
+                                                    <label style="color: #0088d1" ><b>Espacio asignado: </b>   <i><%=spaceGiven%></i> </label><br />
+                                                    <label style="color: #0088d1"><b>Parqueo correspondiente:</b>   <i><%=parkingLotName%></i> <br></label><br />
+                                                </span>
+                                                <span class="moze-important"><label><b>Información del vehículo</b></label></span><br />
+                                                <label><b>Placa:    </b><i><%=plate%></i> </label><br />
+                                                <label><b>Color:    </b><i><%=color%></i> </label><br />
+                                                <label><b>Marca:    </b><i><%=brand%></i> </label><br />
+                                                <label><b>Modelo    </b><i><%=model%></i> </label><br />
+                                                <label><b>Comentarios:    </b><i><%=comments%></i> </label><br />
+                                                <label><b>Tipo de vehículo:    </b><i><%=vehicleTypeId%></i> </label><br /><br />
+                                                <span class="moze-important"><label><b>Información del propietario</b></label></span><br />
+                                                <label><b>Identificación:    </b><i><%=identification%></i> </label><br />
+                                                <label><b>Nombre:    </b><i><%=name%></i> </label><br />
+                                                <label><b>Nombre de usuario:    </b><i><%=username%></i> </label><br />
+                                                <label><b>Discapacidad presente:    </b><i><%=disabilityPresented%></i> </label><br />
                                             </div>
-                                        </div>
-                                        <div class="mz_component mz_editable mz_form" data-cid="11240218">            
-                                            <form action="VehicleInfoServlet" class="moze-form" method="get" data-failuremsg = "Rellena todos los campos obligatorios." onsubmit="javascript:webformFx($(this))">
-                                                <label>Placa</label><br />
-                                                <input name="plate" type="text" data-required="textbox" />
-                                                <span title="Obligatorio">*</span>
-                                                <br />
-                                                <label>Color</label><br />
-                                                <input name="color" type="text"  />
-                                                <br />
-                                                <label>Marca</label><br />
-                                                <input name="brand" type="text"  />
-                                                <br />
-                                                <label>Modelo</label><br />
-                                                <input name="model" type="text"  />
-                                                <br />
-                                                <label>Tipo</label><br />
-                                                <input name="vehicleTypeId" type="text"  />
-                                                <br />
-                                                <label>Parqueo</label><br />
-                                                <select id="parkingLotName" name="parkingLotName" data-required="combobox" >
-                                                    <!-- TODO: Agregar los parqueos desde el archivo -->
-                                                    <option value="">-- Seleccione un parqueo--</option>
-                                                    <option value="Parque del Norte">Parque del Norte</option>
-                                                    <option value="parkingLot1">Parqueo 2</option>
-                                                    <option value="parkingLot1">Parqueo 3</option>
-                                                </select>
-                                                <br />
-                                                <label>Observaciones</label><br />
-                                                <textarea name="comments"></textarea>
-                                                <br />
-                                                <input class="mz_notforhumans" name="comments1" tabindex="-1" type="text" />
-                                                <input class="mz_notforhumans" name="moze-webform-ctrl-slazds" tabindex="-1" type="text" />
-
-                                                <input class="moze-formbutton" type="submit" value="Guardar y registrar cliente" />
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +285,7 @@
                 </div>
             </div>
             <div id="bottom">
-                <div class="mz_component mz_wysiwyg mz_editable">    
+                <div class="mz_component mz_wysiwyg mz_editable">
                     <div class="moze-wysiwyg-editor moze-no-select-border" >
                         Proyecto programación 2 - UCR 2017
                         <br/>Desarroladores: 

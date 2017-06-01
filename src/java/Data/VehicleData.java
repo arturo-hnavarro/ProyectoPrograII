@@ -26,8 +26,8 @@ public class VehicleData {
             Vehicle vehicle = new Vehicle();
             vehicle.setPlate("A" + i);
             if (i == 2) {
-                vehicle.setCustomer(new Customer("304450072", "Arturo", "turo", "1234", false));
-                vehicle.setCustomer(new Customer("123452", "jose", "chepe", "siiiiii", true));
+//                vehicle.setCustomer(new Customer("304450072", "Arturo", "turo", "1234", false));
+//                vehicle.setCustomer(new Customer("123452", "jose", "chepe", "siiiiii", true));
                 vehicles.add(vehicle);
             } else {
                 vehicles.add(vehicle);

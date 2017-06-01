@@ -10,18 +10,18 @@ package Domain;
  * @author Esteban
  */
 public abstract class User {
-    
+
     private String identification;
-    private String name;    
-    private String username; 
+    private String name;
+    private String username;
     private String password;
     private String role;
 
     public User() {
     }
-    
-    public User(String identification, String name, String username, String password,String role) {
-        this.role= role;
+
+    public User(String identification, String name, String username, String password, String role) {
+        this.role = role;
         this.identification = identification;
         this.name = name;
         this.username = username;
@@ -35,7 +35,7 @@ public abstract class User {
     public void setRole(String role) {
         this.role = role;
     }
-    
+
     public String getIdentification() {
         return identification;
     }
@@ -67,8 +67,12 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public abstract boolean verifyUserLogin(String[] loginDetails);
-    
-    
+
+    @Override
+    public String toString() {
+        return "User{" + "identification=" + identification + ", name=" + name + ", username=" + username + ", password=" + password + ", role=" + role + '}';
+    }
+
 }

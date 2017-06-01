@@ -57,6 +57,11 @@ public class VehicleType {
     public void setFee(float fee) {
         this.fee = fee;
     }
+
+    @Override
+    public String toString() {
+        return "VehicleType{" + "id=" + id + ", description=" + description + ", numberOfTires=" + numberOfTires + ", fee=" + fee + '}';
+    }
     
     
 }
